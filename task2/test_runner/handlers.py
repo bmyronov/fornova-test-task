@@ -217,8 +217,8 @@ class TestRunner:
         hotel_name_list = self._process_name(self.hotel_name)
         hotel_name: str = "_".join(hotel_name_list)
         booking_date: list[list[str]] = [d.split(" ") for d in date]
-        screenshot_name: str = f"tripadvisor_{hotel_name}_{booking_date[0][0]}_{booking_date[0][1]}-{booking_date[1][0]}_{booking_date[1][1]}"
-        screenshot = self.driver.save_screenshot(f"./screenshots/{screenshot_name}.png")
+        screenshot_name: str = f"tripadvisor_{hotel_name}_{booking_date[0][0]}_{booking_date[0][1]}-{booking_date[1][0]}_{booking_date[1][1]}.png"
+        screenshot = self.driver.save_screenshot(f"./screenshots/{screenshot_name}")
 
         if not screenshot:
             logger.error("Can't take screenshot")
