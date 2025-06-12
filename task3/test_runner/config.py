@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -18,5 +18,10 @@ capabilities: dict[str, str | bool | None] = {
     "autoAcceptAlerts": True,
 }
 
-appium_server_url: str = f"http://{os.environ.get('HOST')}:{os.environ.get('PORT')}"
+appium_server_url: str = (
+    f"http://{os.environ.get('APPIUM_HOST')}:{os.environ.get('APPIUM_PORT')}"
+)
 app_id = os.environ.get("APPPACKAGE")
+
+RABBITMQ_HOST: str = os.environ.get("RABBITMQ_HOST")
+RABBITMQ_PORT: str = os.environ.get("RABBITMQ_PORT")
