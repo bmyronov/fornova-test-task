@@ -1,4 +1,8 @@
 ## Fornava Test
+Project structure:
+- Task 1 -> test_runner
+- Task 2 -> task2
+- Task 3 -> task3
 
 ## Before we start
 Acording to the task to write test_runner I should have used Genymotion emulator or use Android phone.
