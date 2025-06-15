@@ -1,17 +1,7 @@
-import os
 import logging
-import json
 
-from typing import Any
-
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse, Response
-from sqlmodel import select, Session
-
-from config import SCREENSHOT_DIR
-from producer import get_message
-from database import SessionDep, create_db_and_tables
-from models import Result
+from fastapi import FastAPI
+from database import create_db_and_tables
 from routers import router
 
 # Configure logging
