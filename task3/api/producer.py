@@ -1,6 +1,16 @@
 import uuid
+import logging
+import json
 
 from pika import ConnectionParameters, BlockingConnection, BasicProperties
+
+from config import RABBITMQ_HOST, RABBITMQ_PORT
+from crud import create_result
+
+# Create a logger for this module
+logger = logging.getLogger(__name__)
+
+connection_params = ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT)
 
 
 class HotelResult(object):
@@ -39,3 +49,19 @@ class HotelResult(object):
         while self.response is None:
             self.connection.process_data_events(time_limit=None)
         return self.response
+
+
+def get_message(query: dict[str, list[list[str]]]) -> None:
+    if not query:
+        logger.error("Query is empty!")
+
+    query = json.dumps(query)
+
+    hotel_result = HotelResult(connection_params=connection_params)
+    response: str | None = hotel_result.call(query)
+
+    # Add response to db if exists
+    if response:
+        create_result(response)
+
+    return response

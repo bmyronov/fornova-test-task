@@ -1,34 +1,34 @@
 services:
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: api
-    restart: unless-stopped
-    depends_on:
-      - rabbitmq
-    volumes:
-      - ./api:/app
-      - /app/.venv
-    ports:
-      - "8000:8000"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # api:
+  #   build:
+  #     context: ./api
+  #     dockerfile: Dockerfile
+  #   container_name: api
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - rabbitmq
+  #   volumes:
+  #     - ./api:/app
+  #     - /app/.venv
+  #   ports:
+  #     - "8000:8000"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
-  test_runner:
-    build: ./test_runner
-    container_name: test_runner
-    restart: unless-stopped
-    depends_on:
-      - rabbitmq
-    volumes:
-      - ./test_runner:/app
-      - /app/.venv
-      - ./screenshots:/app//screenshots
-    ports:
-      - "8080:8080"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # test_runner:
+  #   build: ./test_runner
+  #   container_name: test_runner
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - rabbitmq
+  #   volumes:
+  #     - ./test_runner:/app
+  #     - /app/.venv
+  #     - ./screenshots:/app//screenshots
+  #   ports:
+  #     - "8080:8080"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   rabbitmq:
     image: rabbitmq:3-management

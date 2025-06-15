@@ -1,14 +1,16 @@
+import os
 import logging
 import json
 
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse, Response
 from sqlmodel import select, Session
 from pika import ConnectionParameters
 
-from config import RABBITMQ_HOST, RABBITMQ_PORT
-from producer import HotelResult
+from config import SCREENSHOT_DIR
+from producer import get_message
 from database import SessionDep, create_db_and_tables, engine
 from models import Result
 
@@ -22,7 +24,6 @@ logger = logging.basicConfig(
 
 # Create a logger for the main module
 logger = logging.getLogger(__name__)
-connection_params = ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT)
 
 
 def lifespan(app: FastAPI):
@@ -31,23 +32,6 @@ def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
-
-def get_message(query: str) -> str:
-    hotel_result = HotelResult(connection_params=connection_params)
-    response: str | None = hotel_result.call(query)
-
-    return response
-
-
-def create_result(data: Any) -> None:
-    session = Session(engine)
-    result = Result(id=None, data=data)
-
-    session.add(result)
-    print(session)
-    session.commit()
-    session.refresh(result)
 
 
 @app.get("/results")
@@ -69,22 +53,39 @@ def get_last_resilt(session: SessionDep) -> dict[Any, Any]:
     return json.loads(result)
 
 
-@app.get("/search")
-def search_hotel():
-    hotel_name: str = "The Grosvenor Hotel"
-    date_list: list[list[str]] = [
-        ["June 15", "June 16"],
-        ["June 16", "June 17"],
-        ["June 17", "June 18"],
-        ["June 18", "June 19"],
-        ["June 19", "June 26"],
-    ]
-    query = {hotel_name: date_list}
+@app.get("/screenshot/{screenshot_name}")
+def get_screenshot(screenshot_name: str) -> Response:
+    # Creates screenshot folder if it doesn't exists
+    if not os.path.isdir(SCREENSHOT_DIR):
+        logger.warning("Screenshot folder does not exists!")
 
-    response = get_message(json.dumps(query))
-    result = json.loads(response)
-    # Add result to db
-    create_result(response)
+        os.makedirs(SCREENSHOT_DIR)
+        logger.info("Screenshot directory has been created!")
+
+    file_path: str = SCREENSHOT_DIR + "/" + screenshot_name
+    # If file doesn't exists return error 404
+    if not os.path.exists(file_path):
+        logger.info(f"{screenshot_name} does not exists")
+        raise HTTPException(status_code=404, detail="Item not found")
+
+    # If you would like to download the image, instead of just opening it, use this method
+    # return FileResponse(file_path, filename=screenshot_name, media_type="image/png")
+
+    with open(file_path, "rb") as f:
+        image_bytes = f.read()
+    return Response(content=image_bytes, media_type="image/png")
+
+
+@app.get("/test")
+def test():
+    return {"url": "http://localhost:8000/screenshot/1.png"}
+
+
+@app.post("/search")
+def search_hotel(query: dict[str, list[list[str]]]):
+    logger.info(f"Parameters: {query}")
+    response = get_message(query)
+    result: dict[str, Any] = json.loads(response)
 
     if not result:
         raise HTTPException(status_code=404, detail="Item not found")

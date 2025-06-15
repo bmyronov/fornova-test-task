@@ -1,6 +1,7 @@
 import logging
 import json
 
+from typing import Any
 from time import sleep
 
 from appium import webdriver
@@ -36,9 +37,7 @@ def get_driver() -> WebDriver:
     return driver
 
 
-def get_hotel_result(
-    hotel_name: str, date_list: list[list[str]]
-) -> dict[str, dict[str, str]]:
+def get_hotel_result(hotel_name: str, date_list: list[list[str]]) -> dict[str, Any]:
     logger.info(f"Appium server url: {appium_server_url}")
 
     driver = get_driver()
@@ -65,14 +64,12 @@ def get_hotel_result(
 
 
 def on_request(ch, method, props, body):
-    print(body)
-    print(type(body))
-
     query = json.loads(body)
     query_items: list[list[str | list[str]]] = [[k, v] for k, v in query.items()]
     hotel_name: str = query_items[0][0]
     date_list: list[list[str]] = query_items[0][1]
     response = json.dumps(get_hotel_result(hotel_name, date_list))
+    logger.info(response)
 
     ch.basic_publish(
         exchange="",
