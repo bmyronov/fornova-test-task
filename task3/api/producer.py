@@ -7,7 +7,7 @@ from pika import ConnectionParameters, BlockingConnection, BasicProperties
 from config import RABBITMQ_HOST, RABBITMQ_PORT
 from crud import create_result
 
-# Create a logger for this module
+# Create a logger for the producer module
 logger = logging.getLogger(__name__)
 
 connection_params = ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT)
