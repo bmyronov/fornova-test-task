@@ -19,9 +19,6 @@ So all the test were made on Android device.
 
 I used Lenovo Tablet as my test device (for those who will try to recreate in emulator).
 
-## Other helpful resources
-
-
 ## Requirements
 First you need to install Java. To do that install java from their [official cite](https://www.java.com/en/download/) or if you are on Linux install `openjdk` e.g. `sudo dnf install openjdk` or `sudo apt install openjdk`.
 
@@ -127,3 +124,21 @@ logger = logging.basicConfig(
 )
 ...
 ```
+
+### **Task 1 (task2)**
+Task 2 is a proof of consept of task 3.
+The client makes api call to API (`GET /search`). The api makes `POST request` to `test_runner` with parameters `{hotel_name: date_list}`.
+``` python
+{
+"The Grosvenor Hotel": [
+    ["June 15", "June 16"],
+    ["June 16", "June 17"],
+    ["June 17", "June 18"],
+    ["June 18", "June 19"],
+    ["June 19", "June 26"]
+]
+}
+```
+![alt text](https://github.com/bmyronov/fornova-test-task/blob/main/media/diagram_task2_1.png?raw=true)
+
+`/search` - user makes api GET request. Api then makes POST request to the test_runner and waits for the result.
