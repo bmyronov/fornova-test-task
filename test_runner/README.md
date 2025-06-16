@@ -41,7 +41,7 @@
 
 When the program finishes it logs the result, saves screenshots in screenshots folder and closes the app on the device.
 If you want to save logs uncomment this in `main.py` file:
-```
+``` python
 ...
 
 logger = logging.basicConfig(
