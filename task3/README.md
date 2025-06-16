@@ -1,6 +1,6 @@
 # Task 3
 ## Requirements
-Don't forget to rename `.env_example` to `.env` in current folder, `api` folder and in `test_runner` folder.
+Don't forget to rename `.env_example` to `.env` in *current folder*, *api folder* and in *test_runners folder*.
 
 In `test_runner` env:
 ```
