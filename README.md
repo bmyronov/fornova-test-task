@@ -1,5 +1,5 @@
-## Fornava Test
-Project structure:
+# Fornava Test
+## Project structure:
 - Task 1 -> test_runner
 - Task 2 -> task2
 - Task 3 -> task3
@@ -43,11 +43,12 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/plat
     - Open the System Control Panel: You can search for "environment variables" or navigate to "System" -> "Advanced system settings" -> "Environment Variables".
     Add Local Environment Variables as shown below:
 
-    ![alt text](https://github.com/bmyronov/fornova-test-task/blob/main/media/windows_environment _variables.png?raw=true)
+    ![alt text](https://github.com/bmyronov/fornova-test-task/blob/main/media/windows_environment_variables.png?raw=true)
 
-
-- appium server
-- python 3.12+
-- java sdk
+- Install [nodejs](https://nodejs.org/en). On *Linux* run `sudo dnf install nodejs npm` or `sudo apt install nodejs npm`.
+- Install appium server folowing [official documentation](https://appium.io/docs/en/latest/quickstart/).
+*Additional*: if you want to add [Appium Inspector](https://appium.github.io/appium-inspector/latest/quickstart/installation/) run `https://appium.github.io/appium-inspector/latest/quickstart/installation/`.
+- To run appium server run `appium` or if you want to run appium with appium inspector run `appium --use-plugins=inspector --allow-cors`. Appium inspector url address `http://localhost:4723/inspector`.
+- [UV](https://docs.astral.sh/uv/getting-started/installation/)
 
 ## Getting Started
