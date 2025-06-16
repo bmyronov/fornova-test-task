@@ -23,6 +23,23 @@ I used Lenovo Tablet as my test device (for those who will try to recreate in em
 
 
 ## Requirements
+First you need to install java and java sdk. To do that install java from their [official cite](https://www.java.com/en/download/) or if you are on Linux install `openjdk` e.g. `sudo dnf install openjdk` or `sudo apt install openjdk`.
+
+After you've installed java install [Android Studion](https://developer.android.com/studio). It install android sdk and all the necessary staff.
+
+Don't forget to set environment variables for Java and Android sdk. 
+
+On linux you can do it by adding code bellow to your `.bashrc` or `.zshrc` file:
+``` bash
+# JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+
+# ANDROID_HOME
+
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+```
+
 - appium server
 - python 3.12+
 - java sdk
