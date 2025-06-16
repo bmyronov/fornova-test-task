@@ -17,7 +17,7 @@ logger = logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
     datefmt="%d-%m-%Y %H:%M:%S",
-    # filename="./logs/basic.log",
+    # filename="./logs/basic.log", # Uncomment if you want to save logs to the log file.
 )
 
 # Create a logger for the main module
