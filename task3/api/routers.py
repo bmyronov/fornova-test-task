@@ -61,9 +61,38 @@ def get_screenshot(screenshot_name: str) -> Response:
     return Response(content=image_bytes, media_type="image/png")
 
 
+def check_query(query) -> None:
+    if not query:
+        raise HTTPException(
+            status_code=422, detail="You didn't specified any parameters"
+        )
+
+    key = [[k, v] for k, v in query.items()][0][0]
+    if not key:
+        raise HTTPException(
+            status_code=422,
+            detail="Can't process parameters. Parameters should be {hotel_name: date_list}",
+        )
+
+    key = [[k, v] for k, v in query.items()][0][0]
+    if not isinstance(key, str):
+        raise HTTPException(
+            status_code=422,
+            detail="Can't process parameters. hotel_name should be str",
+        )
+
+    value = [[k, v] for k, v in query.items()][0][1]
+    if not isinstance(value, list):
+        raise HTTPException(
+            status_code=422,
+            detail="Can't process parameters. date_list should be list",
+        )
+
+
 @router.post("/search")
 def search_hotel(query: dict[str, list[list[str]]]):
     logger.info(f"Parameters: {query}")
+    check_query(query)
     response = get_message(query)
     result: dict[str, Any] = json.loads(response)
 
