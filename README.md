@@ -13,7 +13,7 @@ Acording to their documentation:
 > If your application is not available in Google Play Store, or if you get the message ```This device isn't supported with this version```, it usually means that it is only available for ARM.
 > In that case, please refer to the Applications for ARM/ARM64 section below.
 
-I wans't able to test it on Mac with Arm processor and on the device with arm processor was able to run Genimotion.
+I wans't able to test it on Mac with Arm processor and on the device with arm processor wasn't able to run Genimotion.
 
 So all the test were made on Android device.
 
