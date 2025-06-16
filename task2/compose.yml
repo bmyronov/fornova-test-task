@@ -5,8 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: api
     restart: unless-stopped
-    # depends_on:
-    #   - test_runner
+    depends_on:
+      - test_runner
     volumes:
       - ./api:/app
       - /app/.venv
