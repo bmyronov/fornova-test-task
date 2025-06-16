@@ -1,15 +1,8 @@
 # Task 3
-## Structure
-![alt text](https://github.com/bmyronov/fornova-test-task/blob/main/media/diagram_task3_1.png?raw=true)
+## Requirements
+Don't forget to rename `.env_example` to `.env` in current folder, `api` folder and in `test_runner` folder.
 
-- `/search` - user makes api POST request with parameters like {hotel_name: date_list}
-
-- `/results` - displays all results
-- `/last_result` - displays the last result
-- `/screenshot/{screenshot_name}` - displays screenshot by its name
-
-## Usage
-Don't forget to rename `.env_example` to `.env`
+In `test_runner` env:
 ```
 # test_runner
 PLATFORMNAME=Android # Platforn you're gonna use e.g. 'Android'
@@ -41,6 +34,32 @@ To ckeck your local ip adress on Linux use command: `ip a`. It will print someth
        valid_lft 81184sec preferred_lft 81184sec
     inet6 .... scope link noprefixroute 
 ```
-`inet 192.168.0.12/24` is what you need. Your ip is `192.168.0.12`. Paste it to `.env` file
+`inet 192.168.0.12/24` is what you need. Your ip is `192.168.0.12`. Paste it to `.env` file.
 
 On Windows type in cmd command `ipconfig`. It will print something like this:
+```
+...
+
+Ethernet adapter Ethernet:
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : ...
+   IPv4 Address. . . . . . . . . . . : 192.168.0.12
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.0.1
+
+...
+```
+`Pv4 Address. . . . . . . . . . . : 192.168.0.12` is what you need. Your ip is `192.168.0.12`. Paste it to `.env` file.
+
+## Structure
+![alt text](https://github.com/bmyronov/fornova-test-task/blob/main/media/diagram_task3_1.png?raw=true)
+
+- `/search` - user makes api POST request with parameters like {hotel_name: date_list}
+
+- `/results` - displays all results
+- `/last_result` - displays the last result
+- `/screenshot/{screenshot_name}` - displays screenshot by its name
+
+## Usage
+
