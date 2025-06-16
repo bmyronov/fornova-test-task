@@ -196,10 +196,10 @@ Ethernet adapter Ethernet:
 `Pv4 Address. . . . . . . . . . . : 192.168.0.12` is what you need. Your ip is `192.168.0.12`. Paste it to `.env` file.
 
 - run `docker compose up -d`
-- Go to http://127.0.0.1:8000/docs and run /search from there or use curl:
+- Go to http://localhost:8000/docs and run /search from there or use curl:
 ``` bash
 curl -X 'GET' \
-  'http://127.0.0.1:8000/search' \
+  'http://localhost:8000/search' \
   -H 'accept: application/json'
 ```
 
@@ -268,4 +268,6 @@ Ethernet adapter Ethernet:
 - `/screenshot/{screenshot_name}` - displays screenshot by its name
 
 ## Usage
+You can use [Postman](https://www.postman.com/), curl or [localhost:8000/docs](http://localhost:8000/docs).
+
 

@@ -62,4 +62,5 @@ Ethernet adapter Ethernet:
 - `/screenshot/{screenshot_name}` - displays screenshot by its name
 
 ## Usage
+You can use [Postman](https://www.postman.com/), curl or [localhost:8000/docs](http://localhost:8000/docs).
 
